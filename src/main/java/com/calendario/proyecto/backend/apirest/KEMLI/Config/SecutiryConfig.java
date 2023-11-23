@@ -30,6 +30,10 @@ public class SecutiryConfig {
                 .authorizeHttpRequests(authReq ->
                     authReq
                         .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/api/clientes/**").permitAll()
+                        .requestMatchers("/api/empleados/**").permitAll()
+                        .requestMatchers("/api/citas/**").permitAll()
+                        .requestMatchers("/api/reportes/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sessionManager -> 
