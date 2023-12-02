@@ -9,6 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -28,6 +29,7 @@ public class ClienteController {
     }
 
     //OBTENER UN CLIENTE
+    @PreAuthorize("hasAnyAuthority('ROOT', 'ADMIN')")
     @GetMapping("/clientes/{id}")
     public ResponseEntity<?> show(@PathVariable Long id) {
         Cliente cliente = null;
@@ -117,7 +119,7 @@ public class ClienteController {
         response.put("cliente", clienteUpdate);
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
     }
-
+    @PreAuthorize("hasAnyAuthority('ROOT', 'ADMIN')")
     @DeleteMapping("/clientes/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         Map<String, Object> response = new HashMap<>();
