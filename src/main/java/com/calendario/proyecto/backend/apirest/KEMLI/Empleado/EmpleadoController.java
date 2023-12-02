@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.util.HashMap;
 import java.util.List;
@@ -26,6 +27,7 @@ public class EmpleadoController {
     }
 
     //OBTENER CLIENTES MEDIANTE ID
+    @PreAuthorize("hasAnyAuthority('ROOT', 'ADMIN')")
     @GetMapping("/empleados/{id}")
     public ResponseEntity<?> show(@PathVariable Long id) {
         Empleado empleado = null;
@@ -47,6 +49,7 @@ public class EmpleadoController {
     }
 
     //CREAR UN EMPLEADO
+    @PreAuthorize("hasAnyAuthority('ROOT', 'ADMIN')")
     @PostMapping("/empleados")
     public ResponseEntity<?> create(@Valid @RequestBody Empleado empleado, BindingResult result) {
         Empleado empleadoNew = null;
@@ -75,7 +78,7 @@ public class EmpleadoController {
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 
     }
-
+    @PreAuthorize("hasAnyAuthority('ROOT', 'ADMIN')")
     @PutMapping("/empleados/{id}")
     public ResponseEntity<?> update(@Valid @RequestBody Empleado empleado, BindingResult result, @PathVariable Long id) {
         Empleado empleadoActual = empleadoService.findById(id);
@@ -116,7 +119,8 @@ public class EmpleadoController {
         response.put("empleado", empleadoUpdate);
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
     }
-
+    //ELIMINAR EMPLEADO
+    @PreAuthorize("hasAnyAuthority('ROOT', 'ADMIN')")
     @DeleteMapping("/empleados/{id}")
     public ResponseEntity<?> delete (@PathVariable Long id) {
         Map<String, Object> response = new HashMap<>();
