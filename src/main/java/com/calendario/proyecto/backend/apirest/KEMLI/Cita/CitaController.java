@@ -48,6 +48,7 @@ public class CitaController {
 
 
     //CREAR UNA CITA
+    @PreAuthorize("hasAnyAuthority('ROOT', 'ADMIN')")
     @PostMapping("/citas")
     public ResponseEntity<?> create (@Valid @RequestBody Cita cita, BindingResult result){
         Cita citaNew = null;
@@ -118,6 +119,8 @@ public class CitaController {
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
     }
 
+    //ELIMINAR CITAS
+    @PreAuthorize("hasAnyAuthority('ROOT', 'ADMIN')")
     @DeleteMapping("/citas/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         Map<String, Object> response = new HashMap<>();
