@@ -47,7 +47,7 @@ public class ClienteController {
     }
 
     //CREAR UN CLIENTE
-    @PreAuthorize("hasRole('1')")
+    @PreAuthorize("hasAuthority('ROOT')")
     @PostMapping("/clientes")
     public ResponseEntity<?> create(@Valid @RequestBody Cliente cliente, BindingResult result) {
         Cliente clienteNew = null;
