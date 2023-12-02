@@ -1,15 +1,25 @@
 package com.calendario.proyecto.backend.apirest.KEMLI.Reporte;
 
-import com.calendario.proyecto.backend.apirest.KEMLI.Cita.Cita;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
-
 import java.io.Serializable;
 
+import com.calendario.proyecto.backend.apirest.KEMLI.Cita.Cita;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import lombok.Data;
 
 @Entity
 @Table(name = "reportes")
-
+@Data
 public class Reporte implements Serializable {
 
     @Id
@@ -24,30 +34,5 @@ public class Reporte implements Serializable {
     @JoinColumn(name = "id_cita")
     private Cita cita;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescripcionReporte() {
-        return descripcionReporte;
-    }
-
-    public void setDescripcionReporte(String descripcionReporte) {
-        this.descripcionReporte = descripcionReporte;
-    }
-
-    public Cita getCita() {
-        return cita;
-    }
-
-    public void setCita(Cita cita) {
-        this.cita = cita;
-    }
-
     private static final long serialVersionUID = 1L;
-
 }

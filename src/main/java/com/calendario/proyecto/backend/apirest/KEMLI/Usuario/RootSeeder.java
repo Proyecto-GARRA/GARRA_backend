@@ -2,7 +2,6 @@ package com.calendario.proyecto.backend.apirest.KEMLI.Usuario;
 
 import java.util.Optional;
 
-import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.crypto.password.PasswordEncoder;
