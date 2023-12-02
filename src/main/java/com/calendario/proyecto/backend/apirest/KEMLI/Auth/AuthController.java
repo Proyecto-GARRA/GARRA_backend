@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
+
 public class AuthController {
 
     private final AuthService authService;
@@ -24,6 +25,7 @@ public class AuthController {
         return ResponseEntity.ok(authService.login(request));
     }
 
+    @PreAuthorize("hasAuthority('ROOT') or hasAuthority('ADMIN')")
     @PostMapping(value = "register")
     public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request) throws RolNotFoundException
     {
