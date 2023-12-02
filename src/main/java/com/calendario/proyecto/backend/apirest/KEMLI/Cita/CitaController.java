@@ -1,7 +1,5 @@
 package com.calendario.proyecto.backend.apirest.KEMLI.Cita;
 
-import com.calendario.proyecto.backend.apirest.KEMLI.Cliente.TipoDeActividad;
-
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;

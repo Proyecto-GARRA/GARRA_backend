@@ -1,7 +1,6 @@
 package com.calendario.proyecto.backend.apirest.KEMLI.Cita;
 
 import com.calendario.proyecto.backend.apirest.KEMLI.Cliente.Cliente;
-import com.calendario.proyecto.backend.apirest.KEMLI.Cliente.TipoDeActividad;
 import com.calendario.proyecto.backend.apirest.KEMLI.Empleado.Empleado;
 import com.calendario.proyecto.backend.apirest.KEMLI.Reporte.Reporte;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

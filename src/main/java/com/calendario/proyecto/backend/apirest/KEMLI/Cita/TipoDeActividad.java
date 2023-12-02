@@ -1,4 +1,4 @@
-package com.calendario.proyecto.backend.apirest.KEMLI.Cliente;
+package com.calendario.proyecto.backend.apirest.KEMLI.Cita;
 
 import jakarta.persistence.*;
 

@@ -1,5 +1,7 @@
 package com.calendario.proyecto.backend.apirest.KEMLI.Config;
 
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -8,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 
 import com.calendario.proyecto.backend.apirest.KEMLI.jwt.JwtAuthenticationFilter;
 
@@ -22,24 +25,25 @@ public class SecutiryConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
-                .csrf(csrf ->
-                    csrf.disable()
-                )
-                .authorizeHttpRequests(authReq ->
-                    authReq
-                        .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers("/api/clientes/**").permitAll()
-                        .requestMatchers("/api/empleados/**").permitAll()
-                        .requestMatchers("/api/citas/**").permitAll()
-                        .requestMatchers("/api/reportes/**").permitAll()
-                        .anyRequest().authenticated()
-                )
-                .sessionManagement(sessionManager -> 
-                    sessionManager
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                )
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(authReq -> authReq
+                        .requestMatchers(
+                                "/auth/**",
+                                "/api/clientes/**",
+                                "/api/empleados/**",
+                                "/api/citas/**",
+                                "/api/reportes/**")
+                        .permitAll()
+
+                        // ROOT and ADMIN endpoints
+                        // .requestMatchers("/api/config").hasRole("ROOT")
+                        // .requestMatchers("/api/config").hasRole("ADMIN")
+
+                        .anyRequest().authenticated())
+                .sessionManagement(sessionManager -> sessionManager
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authProvider)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

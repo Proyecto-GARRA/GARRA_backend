@@ -3,8 +3,6 @@ package com.calendario.proyecto.backend.apirest.KEMLI.Cita;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import com.calendario.proyecto.backend.apirest.KEMLI.Cliente.TipoDeActividad;
-
 import java.util.List;
 
 public interface CitaRepository extends CrudRepository<Cita, Long> {

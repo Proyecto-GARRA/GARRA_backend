@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.calendario.proyecto.backend.apirest.KEMLI.Rol.RolNotFoundException;
+
 import lombok.RequiredArgsConstructor;
 
 
@@ -23,7 +25,7 @@ public class AuthController {
     }
 
     @PostMapping(value = "register")
-    public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request)
+    public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request) throws RolNotFoundException
     {
         return ResponseEntity.ok(authService.register(request));
     }

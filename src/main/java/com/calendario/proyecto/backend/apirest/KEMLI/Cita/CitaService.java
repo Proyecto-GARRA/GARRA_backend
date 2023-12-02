@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.calendario.proyecto.backend.apirest.KEMLI.Cliente.TipoDeActividad;
-
 import java.util.List;
 
 @Service
