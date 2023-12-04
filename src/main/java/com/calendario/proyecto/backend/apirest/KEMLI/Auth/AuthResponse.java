@@ -1,5 +1,7 @@
 package com.calendario.proyecto.backend.apirest.KEMLI.Auth;
 
+import com.calendario.proyecto.backend.apirest.KEMLI.Rol.RolEnum;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,4 +17,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AuthResponse {
     String token;
+    String username;
+    RolEnum rol;
 }
