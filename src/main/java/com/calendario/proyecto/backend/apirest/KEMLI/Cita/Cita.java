@@ -64,9 +64,10 @@ public class Cita implements Serializable {
     @JsonIgnoreProperties({"cita"})
     private Reporte reporte;
 
-    @Column(nullable = false)
+    // TODO: In production delete the 'columnDefintion' parameter, it's only for debuggin purposes
+    @Column(nullable = false, columnDefinition = "ENUM('ACTIVA', 'CANCELADA', 'FINALIZADA') default 'ACTIVA'")
     @Enumerated(EnumType.STRING)
-    private EstadoEnum estado;
+    private EstadoEnum estado = EstadoEnum.ACTIVA;
 
     private static final long serialVersionUID = 1L;
 }
