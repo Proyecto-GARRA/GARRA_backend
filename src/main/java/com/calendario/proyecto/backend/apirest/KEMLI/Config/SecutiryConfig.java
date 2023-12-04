@@ -31,7 +31,8 @@ public class SecutiryConfig {
                                 "/api/clientes/**",
                                 "/api/empleados/**",
                                 "/api/citas/**",
-                                "/api/reportes/**")
+                                "/api/reportes/**",
+                                "/api/roles/**")
                         .permitAll()
 
                         // ROOT and ADMIN endpoints
