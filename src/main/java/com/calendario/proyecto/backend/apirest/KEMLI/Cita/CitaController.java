@@ -13,6 +13,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
@@ -46,6 +49,12 @@ public class CitaController {
 
         return new ResponseEntity<Cita>(cita, HttpStatus.OK);
     }
+
+    @GetMapping("/citas/inactivas")
+    public List<Cita> getFinalizadas() {
+        return citaService.findFinished();
+    }
+    
 
 
     //CREAR UNA CITA

@@ -19,6 +19,9 @@ public interface CitaRepository extends CrudRepository<Cita, Long> {
     //@Query("select c from  Cita c where c.empleado.nombreDelEmpleado like %?1% or c.empleado.apellido_P like %?1% or c.empleado.apellido_M like %?1%")
     public List<Cita>filtradoDeNombreEmpleado(String termino_nombre_empleado);
 
+    @Query(value = "SELECT c FROM Cita c WHERE c.estado NOT LIKE 'ACTIVA'")
+    public List<Cita>filtradoCitasInactivas();
+
 
     //CONSULTA DE TECNICOS
     //@Query("")

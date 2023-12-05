@@ -22,6 +22,11 @@ public class CitaService {
         return citaRepository.findById(id).orElse(null);
     }
 
+    @Transactional(readOnly = true)
+    public List<Cita> findFinished(){
+        return citaRepository.filtradoCitasInactivas();
+    }
+
     @Transactional
     public Cita save(Cita cita) {
         return citaRepository.save(cita);
