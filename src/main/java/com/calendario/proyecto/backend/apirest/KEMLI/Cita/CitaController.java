@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
@@ -14,7 +15,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 
 @CrossOrigin(origins = {"http://localhost:4200"})
@@ -127,6 +131,33 @@ public class CitaController {
         response.put("mensaje", "ha sido actualizado con exito");
         response.put("cliente", citaActual);
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/citas/estado/{id}")
+    public ResponseEntity<?> changeCitaState(@PathVariable long id, @RequestBody CitaRequest body) {
+        Map<String, Object> response = new HashMap<>();
+        String message = "";
+        HttpStatus status;
+        
+        if(body.estado == null || body == null) {
+            message = "Error: Valor del estado vacío";
+            status = HttpStatus.UNPROCESSABLE_ENTITY;
+            response.put("mensaje", message);
+            return new ResponseEntity<Map<String, Object>>(response, status); 
+        }
+
+        String estado = body.estado;
+
+        try {
+            citaService.changeCitaState(id, estado);
+            message = "Estado de cita actualizado a ".concat(estado);
+            response.put("mensaje", message);
+        } catch(Exception e) {
+            status = HttpStatus.BAD_REQUEST;
+            response.put("mensaje", e.getMessage());
+        }
+        status = HttpStatus.OK;
+        return new ResponseEntity<Map<String, Object>>(response, status); 
     }
 
     //ELIMINAR CITAS
