@@ -2,6 +2,7 @@ package com.calendario.proyecto.backend.apirest.KEMLI.Auth;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 
+@CrossOrigin(origins = {"http://localhost:4200"})
 public class AuthController {
 
     private final AuthService authService;
